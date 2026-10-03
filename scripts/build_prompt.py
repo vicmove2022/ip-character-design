@@ -983,7 +983,8 @@ def add_character_flags(p: argparse.ArgumentParser) -> None:
     p.add_argument("--proportion-phrase", default="", help="explicit proportion phrase, overrides --proportion")
     p.add_argument("--expression", default="", help="expression id (happy, excited, confused ...)")
     p.add_argument("--expression-phrase", default="", help="explicit expression phrase, overrides --expression")
-    p.add_argument("--ratio", default="1:1", help="aspect ratio id or token (9:16, 1:1, 16:9 ...)")
+    p.add_argument("--ratio", default=None,
+                   help="aspect ratio id or token; kit defaults to each template's own ratio")
     p.add_argument("--quality", default=None, help="quality tail: default / illustration / photo / pixel / minimal")
     p.add_argument("--quality-phrase", default="", help="explicit quality tail, overrides --quality")
     p.add_argument("--loop", default="", help="loop motion id (breathe, blink, wave, turntable ...)")
@@ -997,12 +998,24 @@ def add_core_flags(p: argparse.ArgumentParser) -> None:
     p.add_argument("--format", choices=["text", "json"], default="text")
 
 
+class _StrictParser(argparse.ArgumentParser):
+    """Subparser that never guesses flags from prefixes.
+
+    argparse allows `--out` to resolve to `--outfit`, which silently drops a
+    file path into the outfit slot. An unknown flag has to be an error.
+    """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        kwargs["allow_abbrev"] = False
+        super().__init__(*args, **kwargs)
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="build_prompt",
         description="Assemble platform-agnostic IP character prompts.",
     )
-    sub = p.add_subparsers(dest="cmd", required=True)
+    sub = p.add_subparsers(dest="cmd", required=True, parser_class=_StrictParser)
 
     s = sub.add_parser("styles", help="list styles")
     s.add_argument("--family", help="filter by family id")

@@ -319,6 +319,39 @@ class CommandSmoke(unittest.TestCase):
                 data = json.load(fh)
             self.assertEqual(set(data["prompts"]), {"identity", "loop"})
 
+    def test_kit_keeps_each_template_designed_ratio(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            path = os.path.join(td, "kit.json")
+            run("kit", "--style", "blob-mascot", "--subject", "a bean", "--out", path)
+            with open(path, encoding="utf-8") as fh:
+                data = json.load(fh)
+            designed = {d["id"]: d["ratio"] for d in bp.load_deliverables()["deliverables"]}
+            self.assertEqual(
+                {k: v["ratio"] for k, v in data["prompts"].items()}, designed
+            )
+            self.assertEqual(designed["banner"], "21:9")
+            self.assertEqual(designed["turnaround"], "16:9")
+
+    def test_kit_ratio_flag_overrides_all(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            path = os.path.join(td, "kit.json")
+            run("kit", "--style", "blob-mascot", "--subject", "a bean",
+                "--ratio", "9:16", "--out", path)
+            with open(path, encoding="utf-8") as fh:
+                data = json.load(fh)
+            for entry in data["prompts"].values():
+                self.assertEqual(entry["ratio"], "9:16")
+
+    def test_build_defaults_to_square(self):
+        import io
+        import contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            bp.main(["build", "--style", "blob-mascot", "--subject", "a bean"])
+        self.assertIn("1:1", buf.getvalue())
+
     def test_kit_expression_subset_changes_grid(self):
         import tempfile
         with tempfile.TemporaryDirectory() as td:

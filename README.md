@@ -196,7 +196,7 @@ Ids accept aliases and both spellings — `watercolour`, `3D`, `chibi`, `food`,
 ## Tests
 
 ```bash
-python -m unittest discover -s tests       # 58 tests
+python -m unittest discover -s tests       # 61 tests
 node --test tests/build_prompt.test.mjs    # 14 tests
 node scripts/build_prompt.mjs check        # data validation
 ```
@@ -241,7 +241,7 @@ showcase/
   ALL-STYLES.md             one worked example per style, all 36
 tests/
   test_build_prompt.py      44 tests
-  test_docs_examples.py     14 tests incl. doc-drift and showcase checks
+  test_docs_examples.py     17 tests incl. doc-drift and showcase checks
   build_prompt.test.mjs     14 tests incl. cross-runtime parity
 references/
   prompt-assembly.md        slot order, emission order, weight syntax

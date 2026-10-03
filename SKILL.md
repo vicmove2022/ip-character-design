@@ -264,7 +264,7 @@ python scripts/make_showcase.py --id chibi-q-chibi   # one style as JSON
 ## Tests
 
 ```bash
-python -m unittest discover -s tests    # 58 tests
+python -m unittest discover -s tests    # 61 tests
 node --test tests/build_prompt.test.mjs  # 14 tests, includes cross-runtime parity
 node scripts/build_prompt.mjs check      # data validation
 ```

@@ -200,6 +200,14 @@ test("python and node produce identical output", { skip: !hasPython() }, () => {
       "--palette", "cream, coral, charcoal outline"],
     ["video", "--type", "image-to-video", "--motion", "a gentle wave",
       "--style", "chibi-q-chibi", "--medium", "cel-shading"],
+    // no --ratio: each kit template must keep its own designed ratio
+    ["kit", "--style", "anthropomorphic-food", "--medium", "soft-3d-render",
+      "--subject", "a plump crescent dumpling", "--signature", "one open pleat",
+      "--palette", "ivory, coral, charcoal outline", "--proportion", "1-2",
+      "--expressions", "happy", "--expressions", "sad", "--format", "json"],
+    ["build", "--style", "blob-mascot", "--subject", "a bean cloud",
+      "--signature", "one red mitten", "--format", "json"],
+    ["consistency", "--style", "chibi-q-chibi", "--subject", "a fox courier"],
   ];
 
   for (const args of cases) {
