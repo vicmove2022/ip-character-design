@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0.0",
+  "note": "Negative-prompt pools. Order of application: global -> family -> style -> medium -> user. Deduplicated while preserving order.",
+  "global": [
+    "extra limbs",
+    "extra fingers",
+    "missing fingers",
+    "fused limbs",
+    "twisted anatomy",
+    "broken proportions",
+    "cropped head",
+    "cropped feet",
+    "deformed face",
+    "asymmetrical eyes",
+    "crossed eyes",
+    "malformed hands",
+    "multiple heads",
+    "watermark",
+    "signature",
+    "username",
+    "artist name",
+    "stock photo watermark",
+    "logo",
+    "brand mark",
+    "text overlay",
+    "caption text",
+    "gibberish text",
+    "illegible text",
+    "border",
+    "frame",
+    "collage",
+    "split image",
+    "reference sheet clutter"
+  ],
+  "by_family": {
+    "mascot-chibi": [
+      "realistic anatomy",
+      "long limbs",
+      "detailed fingers",
+      "dark gritty shading",
+      "photorealism"
+    ],
+    "3d-toy": [
+      "flat vector linework",
+      "cartoon outline",
+      "paper texture",
+      "cloth weave"
+    ],
+    "flat-sticker": [
+      "3d render",
+      "volumetric shading",
+      "photorealism",
+      "grain noise",
+      "film look"
+    ],
+    "pixel-lowpoly": [
+      "smooth gradients",
+      "anti-aliasing",
+      "high resolution detail",
+      "texture noise",
+      "soft focus"
+    ],
+    "craft-plush": [
+      "glossy surface",
+      "plastic sheen",
+      "hard sharp edges",
+      "clean digital shading",
+      "chrome reflection"
+    ],
+    "anime-illustration": [
+      "uncanny valley",
+      "plastic skin",
+      "photorealism",
+      "waxy texture"
+    ],
+    "anthropomorphic": [
+      "realistic animal anatomy",
+      "distressing imagery",
+      "real brand marks",
+      "brand logos",
+      "horror gore"
+    ],
+    "realistic-avatar": [
+      "waxy plastic skin",
+      "over-smoothed face",
+      "uncanny valley",
+      "distorted hands",
+      "asymmetrical face",
+      "cartoon linework",
+      "flat vector"
+    ]
+  },
+  "by_medium": {
+    "hand-drawn-marker": [
+      "digital airbrush smoothness",
+      "perfect symmetry",
+      "vector-crisp edges",
+      "3d render"
+    ],
+    "pencil-sketch": [
+      "colour",
+      "colourful palette",
+      "smooth airbrush shading",
+      "clean vector line",
+      "photorealism"
+    ],
+    "ink-line": [
+      "colour fill",
+      "shading",
+      "3d render",
+      "smooth vector line",
+      "soft gradients"
+    ],
+    "watercolor": [
+      "opaque gouache",
+      "digital airbrush",
+      "hard vector edges",
+      "high saturation"
+    ],
+    "gouache": [
+      "transparent washes",
+      "glossy highlights",
+      "photo texture",
+      "smooth gradients"
+    ],
+    "oil-impasto": [
+      "thin wash",
+      "flat digital fill",
+      "smooth airbrush",
+      "vector linework"
+    ],
+    "pastel-soft": [
+      "glossy surface",
+      "hard vector edges",
+      "high contrast black",
+      "3d render"
+    ],
+    "cel-shading": [
+      "soft gradient shading",
+      "airbrush",
+      "photorealism",
+      "texture noise",
+      "render noise"
+    ],
+    "flat-color-digital": [
+      "gradient",
+      "texture",
+      "blur",
+      "3d shading",
+      "photorealism",
+      "grain"
+    ],
+    "soft-3d-render": [
+      "harsh specular highlights",
+      "noisy render",
+      "hard reflections",
+      "cluttered background"
+    ],
+    "photoreal": [
+      "illustration",
+      "cartoon linework",
+      "plastic skin",
+      "uncanny valley",
+      "over-smoothed face",
+      "sterile studio look"
+    ]
+  },
+  "quality_tails": {
+    "default": [
+      "clean high-quality render",
+      "sharp focus on the subject",
+      "professional composition"
+    ],
+    "illustration": [
+      "clean high-quality illustration",
+      "sharp focus on the subject",
+      "professional art direction"
+    ],
+    "photo": [
+      "professional photography",
+      "sharp focus on the subject",
+      "natural lighting",
+      "high detail"
+    ],
+    "pixel": [
+      "crisp pixel edges",
+      "no anti-aliasing",
+      "limited palette"
+    ],
+    "minimal": [
+      "clean minimal composition",
+      "sharp focus on the subject"
+    ]
+  },
+  "video_negatives": [
+    "flickering texture",
+    "texture crawling",
+    "morphing face",
+    "facial feature drift",
+    "flipping geometry",
+    "warping background",
+    "jitter",
+    "temporal flicker",
+    "inconsistent lighting between frames",
+    "colour shift between frames",
+    "limb count change",
+    "character identity drift"
+  ]
+}

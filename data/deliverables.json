@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0.0",
+  "note": "Video-platform geometry plus the prompt templates for every deliverable. Ratio strings are platform-agnostic - pass them as text unless the target engine needs a specific token.",
+  "aspect_ratios": [
+    {
+      "id": "9:16",
+      "label": "Vertical short",
+      "token": "9:16",
+      "safe_area": "keep the character's head inside the top 70% and leave the bottom 25% clear",
+      "use": "TikTok, Reels, Shorts, Douyin, Kuaishou, WeChat Channels",
+      "tip": "Never centre the face vertically - platform UI covers the lower third."
+    },
+    {
+      "id": "16:9",
+      "label": "Landscape",
+      "token": "16:9",
+      "safe_area": "centre the character, keep key detail inside the inner 80%",
+      "use": "YouTube, Bilibili, presentation slides, thumbnails",
+      "tip": "Place the character off-centre with negative space on the opposite side for text."
+    },
+    {
+      "id": "1:1",
+      "label": "Square",
+      "token": "1:1",
+      "safe_area": "fully symmetric safe area with even margins",
+      "use": "avatars, profile images, marketplace listings, feed cards",
+      "tip": "The single most reusable ratio - design this one first."
+    },
+    {
+      "id": "4:5",
+      "label": "Portrait feed",
+      "token": "4:5",
+      "safe_area": "like 9:16 but with more vertical breathing room",
+      "use": "Instagram and Pinterest-style feed posts",
+      "tip": "Good default when the platform crops 9:16."
+    },
+    {
+      "id": "3:4",
+      "label": "Classic portrait",
+      "token": "3:4",
+      "safe_area": "no platform UI overlap; keep 12% margin all round",
+      "use": "print, thumbnails, poster bases",
+      "tip": "Standard poster proportion."
+    },
+    {
+      "id": "2:3",
+      "label": "Poster",
+      "token": "2:3",
+      "safe_area": "generous margin; keep the character's feet above the bottom 8%",
+      "use": "print, poster, wall art",
+      "tip": "Use for merchandise and physical goods."
+    },
+    {
+      "id": "21:9",
+      "label": "Ultrawide banner",
+      "token": "21:9",
+      "safe_area": "character occupies the left or right third; keep the centre clear",
+      "use": "channel banners, headers",
+      "tip": "Design for the character-plus-text layout, not a centred hero."
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "identity",
+      "label_en": "Identity hero shot",
+      "label_zh": "主形象图",
+      "purpose": "The canonical reference image. Everything else is derived from this.",
+      "template": "{subject}, {role}, {signature_feature}, {proportion}, {silhouette}, {palette}, {material}, {outfit}, {expression}, {pose}, {signature_mark}. {style_core}, {medium_core}, {lighting}, on a plain softly lit background, {composition}. {quality}",
+      "ratio": "1:1",
+      "negative": "global",
+      "notes": "Neutral front-facing pose, plain background, no props in hands. Generate this FIRST and use it as the visual reference for everything downstream."
+    },
+    {
+      "id": "silhouette-test",
+      "label_en": "Silhouette test",
+      "label_zh": "剪影测试图",
+      "purpose": "Verifies the character is recognisable with zero internal detail. Do this before generating anything else.",
+      "template": "{subject} rendered as a solid black silhouette on a plain white background, {silhouette}, {proportion}, {signature_feature} clearly readable in outline, no interior detail, no text, centred",
+      "ratio": "1:1",
+      "negative": "global",
+      "notes": "If this fails, the design is not distinctive enough. Redesign before spending renders on it."
+    },
+    {
+      "id": "turnaround",
+      "label_en": "Turnaround / model sheet",
+      "label_zh": "三视图设定稿",
+      "purpose": "Front, side and three-quarter views on one sheet, plus an optional back view.",
+      "template": "character turnaround model sheet of the same character, {subject} with {signature_feature}, {proportion}, {palette}, {material}, {outfit} identical in every view. Four separate full-body views in a row on a plain background: front view, left side profile view, three-quarter view, back view. Consistent scale, even spacing, flat neutral lighting, no perspective distortion, character design sheet, no text labels",
+      "ratio": "16:9",
+      "negative": "global",
+      "notes": "Ask for 'the same character in every view' and 'consistent scale'. If views disagree, generate each view separately at 1:1 and composite manually - sheet generation is less reliable."
+    },
+    {
+      "id": "expression-sheet",
+      "label_en": "Expression sheet",
+      "label_zh": "表情表",
+      "purpose": "The emotional range of the character on one sheet. Essential for reaction content.",
+      "template": "expression sheet of the same character, {subject} with {signature_feature}, {proportion}, {palette}, identical character design in every panel. {expression_grid}. Neutral front-facing head and shoulders in each panel, consistent lighting, plain background, no text",
+      "ratio": "16:9",
+      "negative": "global",
+      "notes": "Describe the MOUTH shape per expression - it carries more emotion than the eyes. Use this sheet as the source for every reaction GIF in the series."
+    },
+    {
+      "id": "pose-sheet",
+      "label_en": "Pose / action sheet",
+      "label_zh": "动作姿势表",
+      "purpose": "A reusable set of body poses for animation and for still-image reuse.",
+      "template": "pose sheet of the same character, {subject} with {signature_feature}, {proportion}, {palette}, identical character design in every panel. {pose_grid}. Full body visible in every panel, consistent scale, plain background, even neutral lighting, no text",
+      "ratio": "16:9",
+      "negative": "global",
+      "notes": "Add platform-specific poses here (hands forming a heart, shaka sign, phone-holding pose for live commerce)."
+    },
+    {
+      "id": "scene",
+      "label_en": "Scene / in-world shot",
+      "label_zh": "场景图",
+      "purpose": "The character inside its world, for B-roll and establishing beats.",
+      "template": "{subject} with {signature_feature}, {proportion}, {palette}, {material}, {outfit}, {pose}. {style_core}, {medium_core}, {lighting}, {world}, environmental storytelling with foreground and background depth, {composition}. {quality}",
+      "ratio": "16:9",
+      "negative": "global",
+      "notes": "Keep the character's locked descriptors byte-identical to the identity shot. Only world, pose and lighting change."
+    },
+    {
+      "id": "loop",
+      "label_en": "Seamless loop frame",
+      "label_zh": "无缝循环帧",
+      "purpose": "A single looping frame designed for image-to-video. First and last frame must match.",
+      "template": "{subject} with {signature_feature}, {proportion}, {palette}, perfect looping animation setup, {loop_motion}, motion loop with identical start and end pose, subject fully contained in frame with even margin, plain uncluttered background, static camera, {lighting}, no parallax on the background",
+      "ratio": "1:1",
+      "negative": "video",
+      "notes": "Static camera and a plain background are non-negotiable for a clean loop. If the engine needs first and last frames, generate them with the identical prompt and only change the pose to the loop extremes."
+    },
+    {
+      "id": "sticker",
+      "label_en": "Sticker / emote",
+      "label_zh": "贴纸与表情包",
+      "purpose": "Overlay-ready asset with cut border or transparent background.",
+      "template": "{subject} with {signature_feature}, {proportion}, {palette}, {expression}, {pose}, as a die-cut sticker with an even white cut border following the entire silhouette, glossy laminated print finish, centred, plain background, no shadow under the sticker",
+      "ratio": "1:1",
+      "negative": "global",
+      "notes": "Also generate a transparent-background variant by adding 'isolated on a transparent background, no drop shadow'."
+    },
+    {
+      "id": "avatar",
+      "label_en": "Avatar / icon",
+      "label_zh": "头像与图标",
+      "purpose": "Small-size identity mark. Must survive heavy downscaling.",
+      "template": "app icon of the same character, {subject} with {signature_feature}, head and shoulders only, {palette}, bold simple shapes, extremely high readability at small size, minimal detail, centred head icon, thick even outline, flat colour, plain solid background",
+      "ratio": "1:1",
+      "negative": "global",
+      "notes": "Detail must be deleted, not shrunk. If it needs detail to read, the silhouette needs work."
+    },
+    {
+      "id": "banner",
+      "label_en": "Channel banner",
+      "label_zh": "频道横幅",
+      "purpose": "Wide header artwork with room for a channel name.",
+      "template": "wide channel banner artwork, {subject} with {signature_feature} positioned on the left third, full body visible, {palette}, {style_core}, {medium_core}, {world} suggested but soft, large clean empty space on the right two thirds for text, {lighting}. {quality}",
+      "ratio": "21:9",
+      "negative": "global",
+      "notes": "Never render text into the banner. Add the channel name in your editor - generated text is unreliable and legally safer."
+    }
+  ],
+  "expression_grid_default": "Six head-and-shoulders panels in a 3x2 grid, each panel one expression: {list}",
+  "pose_grid_default": "Six full-body poses in a 2x3 grid, each panel one pose: {list}",
+  "pose_defaults": [
+    "standing front-facing with arms relaxed at the sides",
+    "walking in profile with a natural stride",
+    "waving at the viewer with one arm raised",
+    "pointing directly at the viewer",
+    "sitting cross-legged",
+    "jumping with both arms up"
+  ],
+  "extra_poses": [
+    { "id": "heart-hands", "en": "both hands forming a heart shape in front of the chest", "zh": "双手在胸前比心" },
+    { "id": "shaka", "en": "one hand making a shaka sign with the other arm relaxed", "zh": "一手比六，一手放松" },
+    { "id": "phone-hold", "en": "holding a phone up with one hand as if recording", "zh": "单手举手机像在自拍" },
+    { "id": "holding-product", "en": "holding a small plain unbranded product box in both hands", "zh": "双手捧一个无品牌小盒子" },
+    { "id": "thumbs-up", "en": "one arm out with a clear thumbs up", "zh": "单手伸出，清晰的点赞手势" },
+    { "id": "thinking-pose", "en": "one hand on the chin looking up in thought", "zh": "单手托下巴抬头思考" },
+    { "id": "shrugging", "en": "both palms up in a shrug with raised shoulders", "zh": "双手掌心向上耸肩" },
+    { "id": "running", "en": "mid-run with arms pumping and forward lean", "zh": "跑步中，双臂摆动，身体前倾" }
+  ],
+  "expression_defaults": [
+    { "id": "neutral", "en": "neutral calm expression with a level gaze and closed relaxed mouth", "zh": "平静中性表情，目光平视，嘴放松闭合" },
+    { "id": "happy", "en": "warm open smile with raised cheeks and slightly narrowed happy eyes", "zh": "温暖张嘴笑，脸颊上扬，眼睛开心微眯" },
+    { "id": "excited", "en": "wide open-mouthed grin with both eyes into happy arcs and raised eyebrows", "zh": "夸张张嘴大笑，眼睛弯成开心弧线，眉毛上扬" },
+    { "id": "surprised", "en": "small round open mouth with huge widened eyes and raised eyebrows", "zh": "小圆嘴微张，眼睛瞪大，眉毛上扬" },
+    { "id": "confused", "en": "one eyebrow raised with a crooked mouth and one eye half closed", "zh": "一挑眉，嘴角歪，一只眼半眯" },
+    { "id": "thinking", "en": "looking up and away with pursed lips and a hand on the chin", "zh": "抬头斜视，抿嘴，手托下巴" },
+    { "id": "curious", "en": "head tilted to one side with wide curious eyes and a slightly open mouth", "zh": "头歪向一侧，眼睛好奇地睁大，嘴微张" },
+    { "id": "annoyed", "en": "flat unimpressed stare with a straight-line mouth and flat eyebrows", "zh": "面无表情凝视，嘴呈一条直线，眉毛平" },
+    { "id": "excited-point", "en": "confident grin with one eyebrow raised and a slight forward lean", "zh": "自信咧嘴笑，挑眉，身体略前倾" },
+    { "id": "sad", "en": "downturned mouth with inner-brow raise and heavy upper eyelids", "zh": "嘴角下垂，眉内侧上抬，上眼睑下垂" },
+    { "id": "angry", "en": "tight flat mouth with lowered inner brows and a squared jaw", "zh": "嘴紧闭下压，内眉下压，下颌收紧" }
+  ],
+  "loop_motions": [
+    { "id": "breathe", "en": "gentle breathing bob with a subtle chest rise and fall", "zh": "轻微呼吸起伏，胸口缓慢升降" },
+    { "id": "blink", "en": "a single natural blink near the middle of the loop", "zh": "循环中段一次自然眨眼" },
+    { "id": "wave", "en": "a friendly wave with two wrist sways, arm returning exactly to the start position", "zh": "友好挥手，手腕摆动两次，手臂精确回到起始位置" },
+    { "id": "turntable", "en": "a slow constant rotation on the vertical axis at roughly 15 degrees per second", "zh": "绕垂直轴匀速缓慢旋转，每秒约15度" },
+    { "id": "bounce", "en": "a soft squash-and-stretch bounce with two cycles per loop", "zh": "柔和的挤压拉伸弹跳，每循环两次" },
+    { "id": "idle-look", "en": "idle eye movement glancing left, then centre, then right, returning to centre", "zh": "眼神先左、再中、再右，最后回到中间" },
+    { "id": "hair-sway", "en": "hair and fabric swaying gently with a one-second delay after the body stops", "zh": "头发与布料在身体停止后延迟一秒轻微摆动" }
+  ],
+  "video_templates": {
+    "image-to-video": "{motion} for the character while the camera stays completely static, the character identity and the background remain completely unchanged, consistent lighting, no morphing, smooth continuous motion, natural timing",
+    "text-to-video": "{subject}. {style_core}, {medium_core}, {lighting}. {motion}. static locked-off camera, {ratio}, smooth continuous motion, no morphing, consistent character identity across the shot, consistent lighting from first frame to last",
+    "camera": "{subject} in frame. {camera_move}. {lens_note}. Consistent character identity, static lighting style, no morphing"
+  },
+  "camera_moves": [
+    { "id": "static", "en": "static locked-off camera, no movement", "zh": "固定机位，无移动" },
+    { "id": "slow-push", "en": "very slow push-in toward the character", "zh": "极缓慢推近角色" },
+    { "id": "slow-pull", "en": "very slow pull-back revealing more of the world", "zh": "极缓慢拉远，展示更多环境" },
+    { "id": "orbit", "en": "smooth 20-degree orbit around the character", "zh": "绕角色平滑环绕20度" },
+    { "id": "handheld-follow", "en": "light handheld follow movement, subtle natural shake", "zh": "轻微手持跟随，自然微晃" },
+    { "id": "pan-follow", "en": "lateral pan tracking the character walking", "zh": "横向摇摄跟随角色行走" },
+    { "id": "tilt-reveal", "en": "vertical tilt reveal from feet to head", "zh": "由脚到头的垂直上摇揭示" }
+  ],
+  "lens_notes": [
+    { "id": "wide", "en": "24mm wide-angle lens, generous depth of field, slight perspective stretch at the edges", "zh": "24mm广角，景深充足，边缘轻微透视拉伸" },
+    { "id": "normal", "en": "35mm lens, natural perspective, moderate depth of field", "zh": "35mm镜头，自然透视，中等景深" },
+    { "id": "portrait", "en": "85mm portrait lens, shallow depth of field, flattering compression", "zh": "85mm人像镜头，浅景深，压缩感讨喜" },
+    { "id": "macro", "en": "100mm macro lens, extremely shallow depth of field, tiny detail in focus", "zh": "100mm微距，极浅景深，微小细节合焦" }
+  ]
+}

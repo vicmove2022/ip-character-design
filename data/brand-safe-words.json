@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "note": "Legal-safety layer. This skill deliberately NEVER emits artist names, studio names, franchise names or brand names in prompts. Two reasons: (1) some engines refuse or throttle prompts naming living artists or studios, (2) naming a studio to imitate its output is legally risky for a redistributable skill. Use the right-hand generic descriptors instead.",
+  "policy": [
+    "Never write 'in the style of <artist>', '<artist>-style', 'like <movie/TV/game character>'.",
+    "Describe the visual FEATURE you want, not the name of the thing that has it.",
+    "Generic descriptors are safe to state plainly, including: cel shaded, flat vector, low poly, voxel, pixel art, matte 3D render, soft clay, needle felt, oil impasto, watercolour, gouache, risograph print, linocut, art deco poster, mid-century modern poster, comic book ink, studio Ghibli-style -> replace with 'painterly Japanese animation background art with lush hand-painted landscape detail'.",
+    "Product brands: never name a real brand. Say 'a red aluminium soda can', 'a yellow banana-shaped phone case' instead.",
+    "Franchise characters: never name them. Say 'a small round mouse with big round ears and red shorts' instead.",
+    "If a user insists on a named artist, explain the tradeoff once, then comply with the generic-descriptor rewrite instead of the name."
+  ],
+  "rewrite_map": {
+    "flat vector illustration": ["flat vector illustration", "modern editorial vector style"],
+    "soft 3D render": ["soft matte 3D render", "pastel studio 3D render"],
+    "claymation stop motion look": ["modelling clay character", "clay stop-motion aesthetic"],
+    "designer toy figure": ["glossy designer vinyl toy", "collectible vinyl figure"],
+    "Pixar-style 3D": ["soft matte 3D render with expressive eyes", "stylised 3D animated-feature look"],
+    "Disney-style 2D": ["classic hand-drawn animated feature style", "traditional cel animation look"],
+    "anime style": ["anime cel-shaded illustration", "Japanese animation character illustration"],
+    "Ghibli-style": ["painterly Japanese animation background art", "lush hand-painted anime landscape"],
+    "Studio Ghibli": ["painterly hand-painted Japanese animation art"],
+    "cartoon style": ["cartoon illustration with thick outline", "stylised cartoon character design"],
+    "cute style": ["cute stylised character with large eyes and soft forms", "kawaii character design"],
+    "realistic photo": ["photorealistic photography", "documentary photograph"],
+    "cinematic look": ["cinematic lighting with shallow depth of field", "anamorphic cinematic framing"],
+    "minimalist": ["minimal flat design with generous negative space"],
+    "meme style": ["bold high-contrast comic illustration", "impact-style reaction graphic"],
+    "corporate friendly": ["clean flat illustration with a soft palette", "approachable brand illustration"],
+    "retro 8-bit": ["8-bit pixel art sprite", "16-bit console pixel art"],
+    "low poly": ["low-poly flat-shaded 3D", "faceted geometric 3D"],
+    "watercolor": ["watercolour with wet edges and granulation", "loose watercolour illustration"],
+    "oil painting": ["oil impasto painting", "classical oil painting technique"],
+    "pencil sketch": ["graphite pencil sketch", "charcoal sketch"],
+    "sticker": ["die-cut vinyl sticker", "glossy laminated sticker"],
+    "emoji style": ["flat emoji-style pictogram", "simple face icon"],
+    "line art": ["single-weight line art", "minimal ink line drawing"]
+  },
+  "risk_notes": [
+    "Avoid 'in the style of' entirely; some engines block it.",
+    "Avoid the words Pixar, Disney, Ghibli, Mario, Pokemon, LEGO, Sanrio, Marvel in prompts - they trigger filters and are legally risky.",
+    "Do not request real celebrity likenesses.",
+    "Do not request real brand logos or product packaging; describe generic products instead.",
+    "If your channel produces commercial work, check the target engine's terms about artist-style references before publishing prompts publicly."
+  ]
+}

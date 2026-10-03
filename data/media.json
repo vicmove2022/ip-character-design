@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0.0",
+  "note": "Rendering-medium layer. Orthogonal to the style library (styles.json): any style can be rendered in any medium. 'pairs_well' / 'pairs_badly' are guidance, not hard rules - see references/media-layers.md for how to override.",
+  "media": [
+    {
+      "id": "hand-drawn-marker",
+      "name_en": "Marker & Ink Hand-Drawn",
+      "name_zh": "马克笔手绘",
+      "family": "hand",
+      "core_en": "hand-drawn marker illustration, confident marker linework with visible pen pressure and slightly uneven stroke weight, flat marker fill with subtle overlap strokes, slight paper tooth, scanned-paper texture",
+      "kw_zh": [
+        "马克笔",
+        "手绘线",
+        "笔压变化",
+        "平涂",
+        "纸张纹理",
+        "扫描感"
+      ],
+      "surface_note": "Add stroke overlap and paper tooth; remove digital smoothness.",
+      "pairs_well": [
+        "mascot-chibi",
+        "flat-sticker",
+        "craft-plush"
+      ],
+      "pairs_badly": [
+        "photoreal-virtual-human"
+      ],
+      "negative_add": [
+        "digital airbrush smoothness",
+        "perfect symmetry",
+        "vector-crisp edges"
+      ],
+      "video_note": "Sketch-on reveal edit (hand-draws over a static frame) matches the medium natively.",
+      "common_fail": "Marker renders as flat vector unless you explicitly ask for stroke overlap and paper tooth.",
+      "default_lighting": "flat even lighting with no cast shadow, like a scanned drawing"
+    },
+    {
+      "id": "pencil-sketch",
+      "name_en": "Pencil & Graphite Sketch",
+      "name_zh": "铅笔素描",
+      "family": "hand",
+      "core_en": "graphite pencil sketch on textured paper, visible pencil grain and tonal hatching, delicate cross-hatching for shadow, construction lines partially visible, soft smudged charcoal tones, no colour",
+      "kw_zh": [
+        "铅笔",
+        "石墨",
+        "排线阴影",
+        "明暗过渡",
+        "草图线可见",
+        "无彩色"
+      ],
+      "surface_note": "Reveal construction lines; do not clean up the drawing.",
+      "pairs_well": [
+        "anime-illustration",
+        "anthropomorphic",
+        "realistic-avatar"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly"
+      ],
+      "negative_add": [
+        "colour",
+        "smooth airbrush shading",
+        "clean vector line",
+        "photorealism"
+      ],
+      "video_note": "Time-lapse drawing reveal; extremely strong in short-form.",
+      "common_fail": "Without visible hatching the output reads as photoreal, not sketch.",
+      "default_lighting": "soft even lighting with no cast shadow, value read from hatching alone"
+    },
+    {
+      "id": "ink-line",
+      "name_en": "Ink Brush Line Art",
+      "name_zh": "墨线笔绘",
+      "family": "hand",
+      "core_en": "black ink brush line art on white paper, tapered brush strokes with thick-to-thin variation, confident single-pass drawing, dry-brush texture at stroke ends, no fill, no colour",
+      "kw_zh": [
+        "墨线",
+        "毛笔",
+        "粗细变化",
+        "飞白",
+        "单色",
+        "无填色"
+      ],
+      "surface_note": "Let strokes taper; resist uniform line weight.",
+      "pairs_well": [
+        "flat-sticker",
+        "anime-illustration"
+      ],
+      "pairs_badly": [
+        "3d-toy",
+        "craft-plush"
+      ],
+      "negative_add": [
+        "colour fill",
+        "shading",
+        "3d render",
+        "smooth vector line"
+      ],
+      "video_note": "Draw-on animation is native; matches stroke order.",
+      "common_fail": "Uniform-width lines kill the hand-drawn read.",
+      "default_lighting": "no lighting at all, pure black line on a flat white ground"
+    },
+    {
+      "id": "watercolor",
+      "name_en": "Watercolour Wash",
+      "name_zh": "水彩",
+      "family": "paint",
+      "core_en": "watercolour painting, transparent pigment washes, soft wet edges with darker hard edges where the wash dried, visible pigment granulation, colour bleeding and backruns, cold-press paper texture showing through, reserved white paper highlights, three to four pigment palette",
+      "kw_zh": [
+        "水彩",
+        "透明水彩",
+        "湿边干边",
+        "颗粒",
+        "洇色",
+        "冷压纸纹",
+        "留白高光"
+      ],
+      "surface_note": "Reserve white; never fill the whole canvas.",
+      "pairs_well": [
+        "anime-illustration",
+        "mascot-chibi",
+        "anthropomorphic"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly",
+        "3d-toy"
+      ],
+      "negative_add": [
+        "opaque gouache",
+        "digital airbrush",
+        "hard vector edges",
+        "high saturation"
+      ],
+      "video_note": "Paint-on time-lapse or slow wash-bloom loop.",
+      "common_fail": "Opaque coverage and hard edges make it read as gouache or digital.",
+      "default_lighting": "soft diffuse daylight with no strong cast shadow"
+    },
+    {
+      "id": "gouache",
+      "name_en": "Gouache & Flat Paint",
+      "name_zh": "水粉与平涂颜料",
+      "family": "paint",
+      "core_en": "flat opaque gouache painting, matte blocky colour fills with visible brush-edge texture, slight value variation within each fill, clean simplified shapes, no gloss, minimal blending",
+      "kw_zh": [
+        "水粉",
+        "不透明平涂",
+        "哑光",
+        "笔触边缘",
+        "简洁色块"
+      ],
+      "surface_note": "Keep fills opaque and matte; no transparency.",
+      "pairs_well": [
+        "flat-sticker",
+        "mascot-chibi",
+        "3d-toy"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly"
+      ],
+      "negative_add": [
+        "transparent washes",
+        "glossy highlights",
+        "photo texture"
+      ],
+      "video_note": "Flat fills animate cleanly - good for motion graphics.",
+      "common_fail": "Adding gloss or blending turns gouache into digital 2D.",
+      "default_lighting": "flat even lighting with no cast shadow"
+    },
+    {
+      "id": "oil-impasto",
+      "name_en": "Oil Impasto",
+      "name_zh": "油画厚涂",
+      "family": "paint",
+      "core_en": "thick oil impasto painting, heavily loaded palette-knife paint with visible ridges and peaks, sculptural paint handling, rich deep saturated darks, broken colour in the highlights, visible canvas weave texture, single warm key light",
+      "kw_zh": [
+        "厚涂",
+        "刮刀堆叠",
+        "颜料脊",
+        "浓郁暗部",
+        "破碎色",
+        "画布织纹"
+      ],
+      "surface_note": "Paint must have physical thickness; ask for ridge highlights.",
+      "pairs_well": [
+        "anime-illustration",
+        "anthropomorphic",
+        "realistic-avatar"
+      ],
+      "pairs_badly": [
+        "flat-sticker",
+        "pixel-lowpoly"
+      ],
+      "negative_add": [
+        "thin wash",
+        "flat digital fill",
+        "smooth airbrush"
+      ],
+      "video_note": "Slow camera move over a static painting; add parallax to feel alive.",
+      "common_fail": "Flat paint = digital illustration, not oil.",
+      "default_lighting": "single strong warm key light from upper left with a deep cool shadow mass"
+    },
+    {
+      "id": "pastel-soft",
+      "name_en": "Soft Pastel & Chalk",
+      "name_zh": "粉彩与粉笔",
+      "family": "paint",
+      "core_en": "soft pastel drawing on paper, velvety matte powdery texture, visible chalk grain and directional strokes, gently blended edges with a few hard accents, muted high-key palette, subtle paper tooth showing through",
+      "kw_zh": [
+        "粉彩",
+        "粉笔颗粒",
+        "柔和过渡",
+        "哑光",
+        "高明度低饱和",
+        "少量硬边"
+      ],
+      "surface_note": "Powdery matte; avoid gloss and hard digital edges.",
+      "pairs_well": [
+        "mascot-chibi",
+        "anthropomorphic",
+        "craft-plush"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly"
+      ],
+      "negative_add": [
+        "glossy surface",
+        "hard vector edges",
+        "high contrast black"
+      ],
+      "video_note": "Very soft look survives low-quality upscaling well.",
+      "common_fail": "Pastel needs paper tooth to read as real pastel rather than soft digital.",
+      "default_lighting": "soft even diffused lighting with gentle contrast"
+    },
+    {
+      "id": "cel-shading",
+      "name_en": "Cel / Flat Digital Shading",
+      "name_zh": "赛璐璐平涂",
+      "family": "digital",
+      "core_en": "digital cel shading, clean lineart with two or three flat shading bands, crisp terminator lines between bands, flat saturated local colour, hard-edged shadows, subtle rim light, high-key lighting",
+      "kw_zh": [
+        "赛璐璐",
+        "平涂色块",
+        "硬边阴影",
+        "分层",
+        "边缘光",
+        "高饱和"
+      ],
+      "surface_note": "Bands must be discrete; ban gradient shading.",
+      "pairs_well": [
+        "anime-illustration",
+        "mascot-chibi",
+        "flat-sticker"
+      ],
+      "pairs_badly": [
+        "craft-plush",
+        "realistic-avatar"
+      ],
+      "negative_add": [
+        "soft gradient shading",
+        "airbrush",
+        "photorealism",
+        "texture noise"
+      ],
+      "video_note": "Cleanest style for 2D rig animation and motion graphics.",
+      "common_fail": "Gradient shading destroys the cel read - always name the band count.",
+      "default_lighting": "single hard key from upper left with graphic shadow shapes and a rim light"
+    },
+    {
+      "id": "flat-color-digital",
+      "name_en": "Flat Digital Vector",
+      "name_zh": "数字平涂矢量",
+      "family": "digital",
+      "core_en": "flat digital vector illustration, pure flat colour fills with no gradients, no texture, consistent line weight, crisp vector-sharp edges, modern editorial illustration, balanced negative space",
+      "kw_zh": [
+        "扁平矢量",
+        "纯平涂",
+        "无渐变",
+        "统一线宽",
+        "矢量锐边",
+        "编辑插画"
+      ],
+      "surface_note": "Ban gradients, texture and blur entirely.",
+      "pairs_well": [
+        "flat-sticker",
+        "pixel-lowpoly",
+        "mascot-chibi"
+      ],
+      "pairs_badly": [
+        "craft-plush",
+        "3d-toy"
+      ],
+      "negative_add": [
+        "gradient",
+        "texture",
+        "blur",
+        "3d shading",
+        "photorealism"
+      ],
+      "video_note": "Shape-morph animation is cheap and seamless here.",
+      "common_fail": "One accidental gradient turns it into generic 2D illustration.",
+      "default_lighting": "flat lighting with no cast shadow"
+    },
+    {
+      "id": "soft-3d-render",
+      "name_en": "Soft 3D Render",
+      "name_zh": "柔光3D渲染",
+      "family": "digital",
+      "core_en": "soft matte 3D render, rounded organic volumes, matte dielectric material with subtle subsurface scattering, large soft area key light, gentle rim light, pastel gradient studio backdrop, shallow depth of field",
+      "kw_zh": [
+        "哑光3D",
+        "次表面散射",
+        "大柔光",
+        "粉彩渐变背景",
+        "浅景深"
+      ],
+      "surface_note": "Materials must be matte with soft falloff, not glossy.",
+      "pairs_well": [
+        "3d-toy",
+        "mascot-chibi",
+        "anthropomorphic"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly",
+        "flat-sticker"
+      ],
+      "negative_add": [
+        "harsh specular highlights",
+        "noisy render",
+        "hard reflections",
+        "cluttered background"
+      ],
+      "video_note": "Most robust medium for image-to-video motion.",
+      "common_fail": "Glossy materials turn it into product-render, not character IP.",
+      "default_lighting": "soft large-area key from upper front with a gentle rim light and a pastel gradient backdrop"
+    },
+    {
+      "id": "photoreal",
+      "name_en": "Photoreal / Photo",
+      "name_zh": "写实摄影",
+      "family": "camera",
+      "core_en": "photorealistic photography of a physical character object, real lens rendering with natural depth of field, accurate materials and surface wear, realistic lighting with practical falloff, shot on a full-frame camera with a fast prime lens",
+      "kw_zh": [
+        "写实",
+        "真实镜头",
+        "浅景深",
+        "材质磨损",
+        "实拍光",
+        "定焦镜头"
+      ],
+      "surface_note": "Keep real wear, dust and imperfection - sterile renders look fake.",
+      "pairs_well": [
+        "3d-toy",
+        "craft-plush",
+        "realistic-avatar"
+      ],
+      "pairs_badly": [
+        "pixel-lowpoly",
+        "flat-sticker"
+      ],
+      "negative_add": [
+        "illustration",
+        "cartoon linework",
+        "plastic skin",
+        "uncanny valley",
+        "over-smoothed face"
+      ],
+      "video_note": "Realistic footage style; use real camera moves, not 3D moves.",
+      "common_fail": "Photoreal characters need real-world scale cues or they look like floating dolls.",
+      "default_lighting": "soft large-area key from upper front with a gentle fill and natural background falloff"
+    }
+  ]
+}

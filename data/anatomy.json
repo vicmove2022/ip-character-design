@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0.0",
+  "note": "The sixteen-slot character sheet. This is the structured parameter table the prompt assembler fills in. Order matters: slots are emitted into the prompt in this order so the sentence always reads in the same shape.",
+  "emission_order_note": "The identity block (everything before medium) is emitted first, then the style core, then the medium core, then lighting, composition and the quality tail. Lighting words inside the style core are stripped automatically, so a style's default lighting never fights the medium you chose.",
+  "prompt_slot_order": [
+    "subject",
+    "role",
+    "signature_feature",
+    "proportion",
+    "silhouette",
+    "palette",
+    "material",
+    "outfit",
+    "expression",
+    "pose",
+    "world",
+    "signature_mark",
+    "medium",
+    "lighting",
+    "composition",
+    "quality"
+  ],
+  "slots": [
+    {
+      "id": "subject",
+      "label_en": "What it is",
+      "label_zh": "角色本体",
+      "question_en": "What exactly is this character? One noun phrase, species- and object-specific.",
+      "question_zh": "这个角色到底是什么？一句话名词短语，越具体越好。",
+      "required": true,
+      "examples": [
+        "a small round tortoise with moss on its shell",
+        "a 1950s-style diner coffee mug with a chipped rim",
+        "a cloud made of condensation vapour",
+        "an origami paper crane",
+        "a desk lamp"
+      ],
+      "lock_rule": "Never change this across shots. If the generator drifts, restate this phrase verbatim at the START of the prompt, before any style words."
+    },
+    {
+      "id": "role",
+      "label_en": "Role in the channel",
+      "label_zh": "内容中的角色职能",
+      "question_en": "What job does this character do on camera?",
+      "question_zh": "这个角色在频道里负责什么？",
+      "required": false,
+      "values": [
+        "host / presenter",
+        "guide / narrator",
+        "reactor / commentator",
+        "sidekick",
+        "challenger / skeptic",
+        "mascot / brand face",
+        "puppet / object that acts"
+      ],
+      "values_zh": [
+        "主播 / 主持",
+        "向导 / 旁白",
+        "吐槽 / 评论",
+        "搭档 / 副手",
+        "唱反调的质疑者",
+        "吉祥物 / 品牌脸",
+        "会动的道具"
+      ],
+      "lock_rule": "Drives pose and framing. Keep it constant so the character's function reads consistently."
+    },
+    {
+      "id": "signature_feature",
+      "label_en": "One unforgettable feature",
+      "label_zh": "记忆点",
+      "question_en": "The single feature that must be recognisable at thumbnail size. Exactly one.",
+      "question_zh": "缩略图尺寸下也能认出的那一个特征，只写一个。",
+      "required": true,
+      "examples": [
+        "one oversized round yellow rain boot",
+        "a single antenna with a red bead on the tip",
+        "a third eye on the forehead",
+        "a scarf that never stops trailing"
+      ],
+      "lock_rule": "The most important lock. Repeat this exact phrase in EVERY prompt, every shot, every expression. This is the identifier."
+    },
+    {
+      "id": "proportion",
+      "label_en": "Proportion",
+      "label_zh": "身体比例",
+      "question_en": "Head-to-body ratio and stance.",
+      "question_zh": "头身比与站姿。",
+      "required": true,
+      "examples": [
+        "two-head-tall chibi proportions with mitten hands",
+        "1:3.5 proportions with an upright bipedal stance",
+        "1:7 realistic adult human proportions",
+        "blocky 1:3 proportions with cubic limbs"
+      ],
+      "lock_rule": "Generators default to 1:7 human proportions. If you want chibi you must state the ratio numerically."
+    },
+    {
+      "id": "silhouette",
+      "label_en": "Silhouette read",
+      "label_zh": "剪影识别",
+      "question_en": "Describe the outline in one short phrase, as a single dark shape.",
+      "question_zh": "用一个短语描述纯黑剪影的轮廓。",
+      "required": true,
+      "examples": [
+        "a round triangle silhouette",
+        "a tall thin hourglass silhouette",
+        "a wide low mushroom silhouette"
+      ],
+      "lock_rule": "Test the silhouette alone (solid black fill) before generating the full character. If the silhouette is not distinctive, redesign."
+    },
+    {
+      "id": "palette",
+      "label_en": "Palette",
+      "label_zh": "配色",
+      "question_en": "2-5 named colours with roles. More than 5 kills recognition.",
+      "question_zh": "2到5个具名颜色并标注作用，超过5个会失去辨识度。",
+      "required": true,
+      "examples": [
+        "primary teal, secondary cream, accent coral, deep charcoal outline",
+        "primary mustard yellow, accent rust orange, one deep teal secondary, charcoal outline",
+        "primary off-white, accent single red, warm grey secondary"
+      ],
+      "lock_rule": "Always name an outline colour. A named outline colour is the single most effective consistency lock across renders."
+    },
+    {
+      "id": "material",
+      "label_en": "Material / surface",
+      "label_zh": "材质与表面",
+      "question_en": "What is the character physically made of?",
+      "question_zh": "角色在物理上由什么构成？",
+      "required": true,
+      "examples": [
+        "matte painted plastic with a slightly rough surface",
+        "wool felt with visible individual fibres",
+        "glossy injection-moulded vinyl with a parting seam"
+      ],
+      "lock_rule": "One primary material plus one secondary material only. More reads as visual noise."
+    },
+    {
+      "id": "outfit",
+      "label_en": "Outfit",
+      "label_zh": "服装",
+      "question_en": "What is it wearing?",
+      "question_zh": "它穿什么？",
+      "required": false,
+      "examples": [
+        "a simple cream turtleneck",
+        "a red headband and one oversized jacket",
+        "no clothing, a natural body"
+      ],
+      "lock_rule": "Keep the outfit identical across shots even when the pose changes. Wardrobe drift is the most common character-inconsistency failure."
+    },
+    {
+      "id": "expression",
+      "label_en": "Expression",
+      "label_zh": "表情",
+      "question_en": "The single dominant emotion. One word plus a mouth description.",
+      "question_zh": "单一主导情绪，一个情绪词加嘴部描述。",
+      "required": true,
+      "examples": [
+        "confident half-smile with one eyebrow raised",
+        "wide open-mouthed delight",
+        "flat unimpressed stare with a straight-line mouth"
+      ],
+      "lock_rule": "The shape of the mouth does more work than the eyes. Describe mouth shape explicitly."
+    },
+    {
+      "id": "pose",
+      "label_en": "Pose & framing",
+      "label_zh": "姿势与取景",
+      "question_en": "What is the body doing, and where in frame?",
+      "question_zh": "身体在做什么，在画面哪个位置？",
+      "required": true,
+      "examples": [
+        "standing front-facing in a centred full-body shot",
+        "three-quarter turn with one hand on the hip",
+        "leaning forward in a medium close-up, looking straight at the viewer"
+      ],
+      "lock_rule": "For identity shots, always use a neutral front-facing pose. Reserve dramatic poses for later, once the identity is locked."
+    },
+    {
+      "id": "world",
+      "label_en": "World / setting",
+      "label_zh": "世界与场景",
+      "question_en": "Where does the character live?",
+      "question_zh": "角色生活在哪里？",
+      "required": false,
+      "examples": [
+        "a plain soft pastel gradient background",
+        "on a wooden desk in a warm study",
+        "in a sparse white studio with a subtle contact shadow"
+      ],
+      "lock_rule": "For identity and turnaround shots use a plain or minimally-specified background so the character reads. Save the world for scene shots."
+    },
+    {
+      "id": "signature_mark",
+      "label_en": "Signature mark",
+      "label_zh": "标志记号",
+      "question_en": "One small repeatable graphic device that ties the character to a brand.",
+      "question_zh": "一个可重复出现的小图形记号，用来把角色和品牌绑在一起。",
+      "required": false,
+      "examples": [
+        "a small three-dot mark on the shoulder",
+        "a stitched X on the left ear",
+        "a single diagonal stripe on the chest"
+      ],
+      "lock_rule": "Add this to every prompt once it exists. It is the cheapest extra identity lock you can keep."
+    },
+    {
+      "id": "medium",
+      "label_en": "Rendering medium",
+      "label_zh": "画面媒介",
+      "question_en": "Which rendering medium from media.json?",
+      "question_zh": "使用 media.json 里的哪种画面媒介？",
+      "required": true,
+      "note": "Orthogonal to the style. Choose one style from styles.json and one medium from media.json.",
+      "lock_rule": "Never change medium mid-series. Mixing media across shots destroys perceived continuity more than any other change."
+    },
+    {
+      "id": "lighting",
+      "label_en": "Lighting",
+      "label_zh": "布光",
+      "question_en": "One light setup, named by direction and hardness.",
+      "question_zh": "一组布光，写清方向与软硬。",
+      "required": true,
+      "examples": [
+        "soft large-area key from upper front with a gentle rim light",
+        "single hard key from upper left with graphic shadow shapes",
+        "warm backlight exploiting translucency"
+      ],
+      "lock_rule": "Hold lighting constant across an identity series, then vary it deliberately for scene beats."
+    },
+    {
+      "id": "composition",
+      "label_en": "Composition & ratio",
+      "label_zh": "构图与比例",
+      "question_en": "Framing, shot size and aspect ratio.",
+      "question_zh": "取景、景别与画面比例。",
+      "required": true,
+      "note": "Aspect ratio strings are platform-agnostic; see deliverables.json for the full list.",
+      "lock_rule": "Pick the ratio before writing the prompt. Never change ratio mid-series without regenerating all frames."
+    },
+    {
+      "id": "quality",
+      "label_en": "Quality tail",
+      "label_zh": "画质收尾词",
+      "question_en": "Render-quality and detail-density tail.",
+      "question_zh": "渲染质量与细节密度收尾词。",
+      "required": true,
+      "note": "Optional per-platform override; default is platform-agnostic and works in most engines.",
+      "lock_rule": "Keep the same tail everywhere so detail density matches frame to frame."
+    }
+  ],
+  "proportion_presets": [
+    { "id": "1-1", "en": "one head tall, a single mass with no distinct limbs", "zh": "一头身，整体无明显四肢", "use": "blob mascots and single-mass characters" },
+    { "id": "1-1.5", "en": "one and a half head tall proportions with tiny stub limbs", "zh": "一点五头身，极小短肢", "use": "sprite and sticker characters" },
+    { "id": "1-2", "en": "two-head-tall chibi proportions", "zh": "两头身Q版比例", "use": "maximum cuteness, sticker and reaction use" },
+    { "id": "1-2.5", "en": "2.5-head-tall chibi proportions", "zh": "二点五头身", "use": "cute but slightly more agile" },
+    { "id": "1-3", "en": "three-head-tall cartoon proportions", "zh": "三头身卡通比例", "use": "the default mascot ratio" },
+    { "id": "1-3.5", "en": "3.5-head-tall cartoon proportions", "zh": "三点五头身", "use": "friendly brand mascot" },
+    { "id": "1-4", "en": "four-head-tall stylised proportions", "zh": "四头身风格化比例", "use": "storybook and semireal illustration" },
+    { "id": "1-5", "en": "five-head-tall illustrative proportions", "zh": "五头身插画比例", "use": "illustration-forward characters" },
+    { "id": "1-6", "en": "six-head-tall anime proportions", "zh": "六头身动漫比例", "use": "anime characters" },
+    { "id": "1-7", "en": "realistic seven-head-tall human proportions", "zh": "七头身写实真人比例", "use": "virtual humans and VTubers" }
+  ]
+}
